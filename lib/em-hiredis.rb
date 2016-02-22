@@ -5,7 +5,7 @@ module EventMachine
     # All em-hiredis errors should descend from EM::Hiredis::Error
     class Error < RuntimeError; end
 
-    # An error reply from Redis. The actual error retuned by ::Hiredis will be
+    # An error reply from Redis. The actual error returned by ::Hiredis will be
     # wrapped in the redis_error accessor.
     class RedisError < Error
       attr_accessor :redis_error
