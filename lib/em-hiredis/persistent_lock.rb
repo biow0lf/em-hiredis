@@ -5,7 +5,7 @@ module EM::Hiredis
   #
   # :lock_timeout - Specifies how long each lock is acquired for. Setting
   #   this low means that locks need to be re-acquired very often, but a long
-  #   timout means that a process that fails without cleaning up after itself
+  #   timeout means that a process that fails without cleaning up after itself
   #   (i.e. without releasing it's underlying lock) will block the anther
   #   process from picking up this lock
   #   replaced for a long while
