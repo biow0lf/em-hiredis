@@ -3,7 +3,7 @@ require 'em-hiredis'
 
 EM.run {
   redis = EM::Hiredis.connect
-  
+
   redis.sadd('aset', 'member').callback {
     response_deferrable = redis.hget('aset', 'member')
     response_deferrable.errback { |e|

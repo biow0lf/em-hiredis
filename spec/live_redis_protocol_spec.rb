@@ -518,9 +518,9 @@ describe EventMachine::Hiredis, "when closing_connection" do
       op = redis.blpop 'empty_list'
       op.callback { fail }
       op.errback { EM.stop }
-      
+
       redis.close_connection
-      
+
       EM.add_timer(1) { fail }
     end
   end

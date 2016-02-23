@@ -13,23 +13,23 @@ module EventMachine::Hiredis
     def connect
       @sub_callbacks = Hash.new { |h, k| h[k] = [] }
       @psub_callbacks = Hash.new { |h, k| h[k] = [] }
-      
+
       # Resubsubscribe to channels on reconnect
       on(:reconnected) {
         raw_send_command(:subscribe, @subs) if @subs.any?
         raw_send_command(:psubscribe, @psubs) if @psubs.any?
       }
-      
+
       super
     end
-    
+
     # Subscribe to a pubsub channel
-    # 
+    #
     # If an optional proc / block is provided then it will be called when a
     # message is received on this channel
-    # 
+    #
     # @return [Deferrable] Redis subscribe call
-    # 
+    #
     def subscribe(channel, proc = nil, &block)
       if cb = proc || block
         @sub_callbacks[channel] << cb
@@ -38,7 +38,7 @@ module EventMachine::Hiredis
       raw_send_command(:subscribe, [channel])
       return pubsub_deferrable(channel)
     end
-    
+
     # Unsubscribe all callbacks for a given channel
     #
     # @return [Deferrable] Redis unsubscribe call
@@ -142,7 +142,7 @@ module EventMachine::Hiredis
     end
 
     private
-    
+
     # Send a command to redis without adding a deferrable for it. This is
     # useful for commands for which replies work or need to be treated
     # differently

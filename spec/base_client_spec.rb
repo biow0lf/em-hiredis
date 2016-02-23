@@ -25,7 +25,7 @@ describe EM::Hiredis::BaseClient do
       }
     end
   end
-  
+
   it "should emit disconnected when the connection closes" do
     connect do |redis|
       redis.on(:disconnected) {
